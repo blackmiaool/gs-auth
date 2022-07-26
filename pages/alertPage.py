@@ -13,8 +13,7 @@ class AlertPage(WindowBase):
             290, 80), style=wx.ALIGN_CENTRE_HORIZONTAL)
         font = wx.Font(16, wx.FONTFAMILY_DEFAULT, wx.NORMAL, wx.NORMAL)
         self.msg.SetFont(font)
-        self.button = wx.Button(self.mainPanel, -1,
-                                'OK', size=(100, 40))
+        self.button = wx.Button(self.mainPanel, id=wx.ID_OK)
         verticalSizer.Add(self.msg, 0, wx.CENTER, 20)
         verticalSizer.Add(self.button, 0, wx.CENTER, 0)
         horizontalSizer.AddStretchSpacer()

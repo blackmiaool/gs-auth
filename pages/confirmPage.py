@@ -9,15 +9,15 @@ class ConfirmPage(WindowBase):
 
         horizontalSizer = wx.BoxSizer(wx.HORIZONTAL)
 
-        self.msg = wx.StaticText(self.mainPanel, id=wx.ID_ANY, label=" ")
+        self.msg = wx.StaticText(self.mainPanel, id=wx.ID_ANY, label=self.params["content"], size=(
+            290, 80), style=wx.ALIGN_CENTRE_HORIZONTAL)
 
         font = wx.Font(18, wx.FONTFAMILY_DEFAULT, wx.NORMAL, wx.NORMAL)
         horizontalSizer2 = wx.BoxSizer(wx.HORIZONTAL)
         self.msg.SetFont(font)
-        self.button1 = wx.Button(self.mainPanel, -1,
-                                 'OK', size=(80, 40))
-        self.button2 = wx.Button(self.mainPanel, -1,
-                                 'Cancel', size=(80, 40))
+        self.button1 = wx.Button(self.mainPanel, id=wx.ID_OK)
+        self.button2 = wx.Button(
+            self.mainPanel, id=wx.ID_CANCEL)
         horizontalSizer2.Add(self.button1, 0, wx.CENTER, 0)
         horizontalSizer2.Add(self.button2, 0, wx.LEFT, 30)
         verticalSizer.Add(self.msg, 0, wx.CENTER, 20)
@@ -27,10 +27,9 @@ class ConfirmPage(WindowBase):
         horizontalSizer.AddStretchSpacer()
 
         self.mainPanel.SetSizer(horizontalSizer)
-        self.onKey(gsKeyCodeMap['A'], "Confirm", self.onConfirmEvent)
+        self.onKey(gsKeyCodeMap['A'], "OK", self.onConfirmEvent)
         self.onKey(gsKeyCodeMap['B'], "Cancel", self.onCancelEvent)
         self.button1.Bind(wx.EVT_BUTTON, self.onConfirmEvent)
-        self.msg.SetLabelText(self.params["content"])
         self.msg.Wrap(self.mainWidth-30)
         self.Layout()
 

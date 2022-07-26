@@ -29,9 +29,9 @@ class AuthPage(WindowBase):
 
         self.selectedItem = 0
 
-        self.onKey(gsKeyCodeMap['X'], "Push", self.pushItem)
+        self.onKey(gsKeyCodeMap['B'], "Push", self.pushItem)
         self.onKey(gsKeyCodeMap['A'], "Add", self.add)
-        self.onKey(gsKeyCodeMap['B'], "Pull", self.pullItem)
+        self.onKey(gsKeyCodeMap['X'], "Pull", self.pullItem)
         self.onKey(gsKeyCodeMap['Y'], "Del", self.confirmDeleteItem)
 
         self.timer = wx.Timer(self)
@@ -43,7 +43,7 @@ class AuthPage(WindowBase):
         self.onKey('Nav', "Select", self.onSelect)
 
     def confirmDeleteItem(self, event):
-        self.parent.confirm("delete", 'Delete secret ' +
+        self.confirm("delete", 'Delete secret ' +
                             self.decodedAuthList[self.selectedItem]['title'])
 
     def deleteItem(self):
@@ -204,7 +204,6 @@ class AuthPage(WindowBase):
                 self.parent.push(
                     "/input", {'title': 'Input the account secret', 'key': 'addSecret'})
             elif params['key'] == 'addSecret':
-                # try:
                 num = get_totp_token(params['value'])
                 encrypedTitle = encrypt(self.key, self.addParams['addTitle'])
                 encrypedSecret = encrypt(
