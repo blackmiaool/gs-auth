@@ -30,6 +30,7 @@ class ConfirmPage(WindowBase):
         self.onKey(gsKeyCodeMap['A'], "OK", self.onConfirmEvent)
         self.onKey(gsKeyCodeMap['B'], "Cancel", self.onCancelEvent)
         self.button1.Bind(wx.EVT_BUTTON, self.onConfirmEvent)
+        self.button2.Bind(wx.EVT_BUTTON, self.onCancelEvent)
         self.msg.Wrap(self.mainWidth-30)
         self.Layout()
 
