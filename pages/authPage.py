@@ -44,7 +44,7 @@ class AuthPage(WindowBase):
 
     def confirmDeleteItem(self, event):
         self.confirm("delete", 'Delete secret ' +
-                            self.decodedAuthList[self.selectedItem]['title'])
+                     self.decodedAuthList[self.selectedItem]['title'])
 
     def deleteItem(self):
         if len(self.decodedAuthList) == 0:
@@ -204,7 +204,12 @@ class AuthPage(WindowBase):
                 self.parent.push(
                     "/input", {'title': 'Input the account secret', 'key': 'addSecret'})
             elif params['key'] == 'addSecret':
-                num = get_totp_token(params['value'])
+                try:
+                    num = get_totp_token(params['value'])
+                except:
+                    self.parent.push('/alert',{'content':'Invalid secret'})
+                    return
+
                 encrypedTitle = encrypt(self.key, self.addParams['addTitle'])
                 encrypedSecret = encrypt(
                     self.key, self.addParams['addSecret'])
