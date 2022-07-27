@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd ~/github/gs-py
-python3 a.py
+cd ~/gs-auth
+python3 entry.py
